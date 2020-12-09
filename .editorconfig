@@ -1,0 +1,13 @@
+# Editorconfig is awesome: http://EditorConfig.org
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+indent_style = space
+end_of_line = crlf
+insert_final_newline = true
+max_line_length = 120
+tab_idth = 4
+
+[*.{xml, yml}]
+indent_size = 2
