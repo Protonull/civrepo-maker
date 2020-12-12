@@ -15,7 +15,7 @@
   </modules>
 
   <properties>
-    <localrepo>${project.build.directory}/output/</localrepo>
+    <localrepo>${project.build.directory}/civrepo/</localrepo>
   </properties>
 
   <build>

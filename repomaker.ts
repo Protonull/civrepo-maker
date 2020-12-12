@@ -3,30 +3,32 @@ import cloner from "./scripts/cloner";
 import chalk from "chalk";
 import {execSync} from "child_process";
 import {sync as rimraf} from "rimraf";
-import * as fs from "fs";
 
 console.log(chalk.blue("Setting up RepoMaker."));
 
 const targetFolder = resolve(__dirname, "targets");
-const outputFolder = resolve(__dirname, "output");
+const outputFolder = resolve(__dirname, "civrepo");
 
-// Reset output
-console.log("Resetting output folder");
+// Clean repo folder
+console.log("Resetting repo folder");
 try {
     rimraf(outputFolder);
 }
 catch (error) {
-    console.warn(chalk.yellow("Could not remove output folder."));
+    console.warn(chalk.yellow("Could not remove repo folder."));
     process.exit(1);
 }
+
+// Clone repo folder
 try {
-    fs.mkdirSync(outputFolder);
+    console.log("Cloning Repo");
+    cloner(__dirname, "https://github.com/civrepo/civrepo.github.io.git", "civrepo");
+    console.log("Successfully cloned.");
 }
 catch (error) {
-    console.warn(chalk.yellow("Could not create output folder."));
+    console.warn(chalk.yellow(error.message));
     process.exit(1);
 }
-console.log("Output folder reset.");
 
 // Clone Parent POM
 try {
@@ -77,8 +79,7 @@ catch (error) {
 // Install everything
 try {
     console.log("Deploying...");
-    const folder = resolve(__dirname, "output");
-    const deploy = "-DaltDeploymentRepository=localcivrepo::default::file://" + folder;
+    const deploy = "-DaltDeploymentRepository=localcivrepo::default::file://" + outputFolder;
     execSync("mvn clean deploy -Dcheckstyle.skip -Dmaven.javadoc.skip=true --fail-at-end " + deploy,
         {cwd: targetFolder, stdio: "inherit", encoding: "utf8"});
     console.log("Deploy completed.");
