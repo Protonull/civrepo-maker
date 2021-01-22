@@ -22,7 +22,7 @@ catch (error) {
 // Clone repo folder
 try {
     console.log("Cloning Repo");
-    cloner(__dirname, "https://github.com/civrepo/civrepo.github.io.git", "civrepo");
+    cloner(__dirname, "https://github.com/Protonull/CivRepo.git", "civrepo");
     console.log("Successfully cloned.");
 }
 catch (error) {
@@ -33,7 +33,7 @@ catch (error) {
 // Clone Parent POM
 try {
     console.log("Cloning ParentPOM");
-    cloner(targetFolder, "https://github.com/civrepo/parent-pom.git");
+    cloner(targetFolder, "https://github.com/Protonull/parent-pom.git");
     console.log("Successfully cloned.");
 }
 catch (error) {
@@ -44,7 +44,7 @@ catch (error) {
 // Clone MegaRepo
 try {
     console.log("Cloning MegaRepo");
-    cloner(targetFolder, "https://github.com/civrepo/megarepo.git");
+    cloner(targetFolder, "https://github.com/Protonull/megarepo.git");
     console.log("Successfully cloned.");
 }
 catch (error) {
